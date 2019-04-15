@@ -1,0 +1,34 @@
+<!doctype HTML>
+<html>
+  <script>
+    AFRAME.registerComponent('registerevents',{
+        init: function()
+          {
+             var marker = this.el;
+
+             marker.setAttributes('emitevents', true);
+             marker.addEventListener('markerFound', function()
+             {
+                var markerId = marker.id;
+                console.log('markerFound', markerId);
+                //TODO: add your own code here to react to marker being found     
+             }); marker.addEventListener('markerLost', function(){
+                var markerId = marker.id;
+                console.log('markerLost', markerId);
+            });            
+        }
+    });     
+
+
+  </script>
+  <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.2/aframe/build/aframe-ar.js"></script>
+    <body style='margin : 0px; overflow: hidden;'>
+      <a-scene embedded arjs = "sourceType: webcam;">
+            <a-marker preset="hiro">
+                <a-entity gtlf-model="url('examples/models/gltf/Monster/glTF-Draco/Monster.gltf')"></a-entity>
+            </a-marker>
+          <a-entity camera></a-entity>
+      </a-scene>
+    </body>
+</html>
